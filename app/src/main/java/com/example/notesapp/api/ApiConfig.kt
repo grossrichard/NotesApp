@@ -5,5 +5,5 @@ package com.example.notesapp.api
  */
 object ApiConfig {
 
-    const val BASE_ENDPOINT_URL= "https://cookbook.ack.ee/api/v1/"
+    const val BASE_ENDPOINT_URL= "https://private-anon-5301a232b7-note10.apiary-mock.com/"
 }

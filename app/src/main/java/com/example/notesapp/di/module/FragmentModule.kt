@@ -4,11 +4,11 @@ import androidx.lifecycle.ViewModel
 import com.example.notesapp.di.ViewModelBuilder
 import com.example.notesapp.di.ViewModelKey
 import com.example.notesapp.view.AddRecipeFragment
-import com.example.notesapp.view.RecipeDetailFragment
-import com.example.notesapp.view.RecipeListFragment
+import com.example.notesapp.view.NoteDetailFragment
+import com.example.notesapp.view.NotesListFragment
 import com.example.notesapp.viewmodel.AddRecipeVM
-import com.example.notesapp.viewmodel.RecipeDetailVM
-import com.example.notesapp.viewmodel.RecipeListVM
+import com.example.notesapp.viewmodel.NoteDetailVM
+import com.example.notesapp.viewmodel.NotesListVM
 import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -23,20 +23,20 @@ import dagger.multibindings.IntoMap
 abstract class FragmentModule {
 
     @ContributesAndroidInjector(modules = [ViewModelBuilder::class])
-    abstract fun recipeListFragment(): RecipeListFragment
+    abstract fun recipeListFragment(): NotesListFragment
 
     @Binds
     @IntoMap
-    @ViewModelKey(RecipeListVM::class)
-    abstract fun recipeListVM(vm: RecipeListVM): ViewModel
+    @ViewModelKey(NotesListVM::class)
+    abstract fun recipeListVM(vm: NotesListVM): ViewModel
 
     @ContributesAndroidInjector(modules = [ViewModelBuilder::class])
-    abstract fun recipeDetailFragment(): RecipeDetailFragment
+    abstract fun recipeDetailFragment(): NoteDetailFragment
 
     @Binds
     @IntoMap
-    @ViewModelKey(RecipeDetailVM::class)
-    abstract fun recipeDetailVM(vm: RecipeDetailVM): ViewModel
+    @ViewModelKey(NoteDetailVM::class)
+    abstract fun recipeDetailVM(vm: NoteDetailVM): ViewModel
 
     @ContributesAndroidInjector(modules = [ViewModelBuilder::class])
     abstract fun addRecipeFragment(): AddRecipeFragment

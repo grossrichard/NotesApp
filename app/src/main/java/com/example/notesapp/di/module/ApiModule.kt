@@ -2,7 +2,7 @@ package com.example.notesapp.di.module
 
 import com.example.notesapp.Application
 import com.example.notesapp.api.ApiConfig
-import com.example.notesapp.api.RecipeApiDefinition
+import com.example.notesapp.api.NotesApiDefinition
 import com.google.gson.Gson
 import com.readystatesoftware.chuck.ChuckInterceptor
 import dagger.Module
@@ -23,7 +23,7 @@ class ApiModule {
 
     @Provides
     @Singleton
-    fun provideRecipeApiDefinition(): RecipeApiDefinition =
+    fun provideRecipeApiDefinition(): NotesApiDefinition =
 //        RecipeApiDefinitionMock()
 
         Retrofit.Builder()
@@ -41,5 +41,5 @@ class ApiModule {
             )
             .addConverterFactory(GsonConverterFactory.create(Gson()))
             .build()
-            .create(RecipeApiDefinition::class.java)
+            .create(NotesApiDefinition::class.java)
 }

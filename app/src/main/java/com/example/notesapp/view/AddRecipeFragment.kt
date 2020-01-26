@@ -10,7 +10,7 @@ import com.example.notesapp.skeleton.mvvm.BaseMvvmFragment
 import com.example.notesapp.skeleton.mvvm.event.RecipeSuccessfullyAddedEvent
 import com.example.notesapp.util.AlertDialogCreator
 import com.example.notesapp.viewmodel.AddRecipeVM
-import kotlinx.android.synthetic.main.fragment_recipe_list.*
+import kotlinx.android.synthetic.main.fragment_note_list.*
 import kotlin.reflect.KClass
 
 

@@ -8,4 +8,4 @@ import javax.inject.Singleton
  */
 
 @Singleton
-class RecipeApiService @Inject constructor(val service: RecipeApiDefinition)
+class RecipeApiService @Inject constructor(val service: NotesApiDefinition)

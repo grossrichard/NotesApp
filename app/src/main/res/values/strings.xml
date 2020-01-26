@@ -7,6 +7,8 @@
     <string name="ingredients_label">Ingredients</string>
     <string name="info_label">Description</string>
     <string name="add">Add</string>
+    <string name="remove">Remove</string>
+    <string name="edit">Update</string>
     <string name="add_recipe_toolbar_tittle">Add Recipe</string>
     <string name="add_recipe_name_hint">Recipe name</string>
     <string name="add_recipe_info_hint">Introductory text</string>
