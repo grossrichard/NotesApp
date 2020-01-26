@@ -1,12 +1,14 @@
 package com.example.notesapp.viewmodel
 
 import androidx.lifecycle.MutableLiveData
+import com.example.notesapp.R
 import com.example.notesapp.api.dto.EmptyDto
 import com.example.notesapp.entity.Note
 import com.example.notesapp.entity.NoteDetailMode
 import com.example.notesapp.entity.NoteDetailMode.*
 import com.example.notesapp.model.NotesDataManager
 import com.example.notesapp.skeleton.mvvm.BaseViewModel
+import com.example.notesapp.skeleton.mvvm.event.MessageEvent
 import com.example.notesapp.util.AlertDialogCreator
 import io.reactivex.functions.Consumer
 import javax.inject.Inject
@@ -36,36 +38,27 @@ class NoteDetailVM @Inject constructor(private val dataManager: NotesDataManager
     }
 
     fun deleteNote() {
-        id?.let { subscribeSingle(dataManager.deleteNote(it), Consumer(this::onNoteDeleted)) }
+        id?.let { subscribeSingle(dataManager.deleteNote(it), Consumer { onResult() }) }
     }
 
     fun createNote() {
-        id?.let {
-            subscribeSingle(
-                dataManager.createNote(Note(it, title.value)),
-                Consumer(this::onNoteCreated)
-            )
-        }
+        subscribeSingle(dataManager.createNote(Note("", title.value)), Consumer { onResult() })
     }
 
     fun editNote() {
         id?.let {
             subscribeSingle(
                 dataManager.editNote(it, Note(it, title.value)),
-                Consumer(this::onNoteEdited)
-            )
+                Consumer { onResult() })
         }
     }
 
-    private fun onNoteDeleted(emptyDto: EmptyDto) {
-    }
-
-    private fun onNoteCreated(note: Note) {
-        // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    private fun onNoteEdited(note: Note) {
-        // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    private fun onResult() {
+        when (mode.value) {
+            EDIT -> publish(MessageEvent(R.string.dialog_note_edited))
+            CREATE -> publish(MessageEvent(R.string.dialog_note_created))
+            DELETE -> publish(MessageEvent(R.string.dialog_note_deleted))
+        }
     }
 
     private fun onNoteDetailLoaded(note: Note) {

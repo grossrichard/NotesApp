@@ -21,7 +21,8 @@
     <string name="dialog_error_title">Error</string>
     <string name="dialog_error_msg">Error occurred!</string>
     <string name="dialog_no_internet_available">No internet available!</string>
-    <string name="dialog_add_recipe_added_success">Recipe has been successful added</string>
-    <string name="dialog_add_recipe_added_error">Recipe has been successful added</string>
+    <string name="dialog_note_created">New note has been created!</string>
+    <string name="dialog_note_edited">Note has been edited!</string>
+    <string name="dialog_note_deleted">Note has been deleted!</string>
 
 </resources>

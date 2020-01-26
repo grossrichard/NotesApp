@@ -1,6 +1,7 @@
 package com.example.notesapp.util
 
 import android.content.Context
+import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import com.example.notesapp.R
 
@@ -21,9 +22,9 @@ object AlertDialogCreator {
             .show()
     }
 
-    fun createRecipeSuccessfullyAddedDialog(context: Context) {
+    fun createMessageDialog(context: Context, @StringRes messageRes: Int) {
         AlertDialog.Builder(context).apply {
-            setTitle(UiUtils.getString(R.string.dialog_add_recipe_added_success))
+            setTitle(UiUtils.getString(messageRes))
             setCancelable(false)
             setNeutralButton(
                 UiUtils.getString(R.string.dialog_ok)

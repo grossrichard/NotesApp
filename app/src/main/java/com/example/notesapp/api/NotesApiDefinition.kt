@@ -13,15 +13,15 @@ interface NotesApiDefinition {
     @GET("notes")
     fun loadNotes(): Single<List<NoteDto>>
 
+    @GET("notes/{recipeId}")
+    fun loadNoteDetail(@Path("recipeId") id: String): Single<NoteDto>
+
     @POST("notes")
     fun createNote(@Body note: NoteDto): Single<NoteDto>
 
     @PUT("notes/{recipeId}")
-    fun updateNote(@Path("recipeId") id: String, note: NoteDto): Single<NoteDto>
+    fun updateNote(@Path("recipeId") id: String, @Body note: NoteDto): Single<NoteDto>
 
     @DELETE("notes/{recipeId}")
     fun deleteNote(@Path("recipeId") id: String): Single<EmptyDto>
-
-    @GET("notes/{recipeId}")
-    fun loadNoteDetail(@Path("recipeId") id: String): Single<NoteDto>
 }

@@ -5,12 +5,16 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import com.example.notesapp.R
 import com.example.notesapp.databinding.FragmentNoteDetailBinding
 import com.example.notesapp.entity.NoteDetailMode
 import com.example.notesapp.entity.NoteDetailMode.*
 import com.example.notesapp.skeleton.mvvm.BaseMvvmFragment
+import com.example.notesapp.skeleton.mvvm.event.MessageEvent
+import com.example.notesapp.util.AlertDialogCreator
 import com.example.notesapp.viewmodel.NoteDetailVM
 import kotlinx.android.synthetic.main.fragment_note_list.*
 import kotlin.reflect.KClass
@@ -31,6 +35,11 @@ class NoteDetailFragment : BaseMvvmFragment<FragmentNoteDetailBinding, NoteDetai
             viewModel.mode.value = NoteDetailFragmentArgs.fromBundle(it).mode
             viewModel.id = NoteDetailFragmentArgs.fromBundle(it).id
         }
+
+        subscribe(MessageEvent::class, Observer {
+            AlertDialogCreator.createMessageDialog(context!!, it.messageRes)
+            Navigation.findNavController(view!!).navigateUp()
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -56,25 +65,21 @@ class NoteDetailFragment : BaseMvvmFragment<FragmentNoteDetailBinding, NoteDetai
                 when (it.itemId) {
                     R.id.action_edit -> {
                         updateMode(EDIT)
-                        viewModel.editNote()
                         true
                     }
 
                     R.id.action_create -> {
                         updateMode(CREATE)
-                        viewModel.editNote()
                         true
                     }
 
                     R.id.action_remove -> {
                         updateMode(DELETE)
-                        viewModel.deleteNote()
                         true
                     }
 
                     R.id.action_confirm -> {
-                        updateMode(EDIT)
-                        viewModel.editNote()
+                        doOnConfirm()
                         true
                     }
                     else -> super.onOptionsItemSelected(it)
@@ -83,6 +88,14 @@ class NoteDetailFragment : BaseMvvmFragment<FragmentNoteDetailBinding, NoteDetai
         }
 
         setHasOptionsMenu(true)
+    }
+
+    private fun doOnConfirm() {
+        when (viewModel.mode.value) {
+            EDIT -> viewModel.editNote()
+            CREATE -> viewModel.createNote()
+            DELETE -> viewModel.deleteNote()
+        }
     }
 
     private fun updateMode(mode: NoteDetailMode) {
