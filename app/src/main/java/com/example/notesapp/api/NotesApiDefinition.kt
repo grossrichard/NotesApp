@@ -3,6 +3,7 @@ package com.example.notesapp.api
 import com.example.notesapp.api.dto.EmptyDto
 import com.example.notesapp.api.dto.NoteDto
 import io.reactivex.Single
+import retrofit2.Response
 import retrofit2.http.*
 
 /**
@@ -23,5 +24,5 @@ interface NotesApiDefinition {
     fun updateNote(@Path("recipeId") id: String, @Body note: NoteDto): Single<NoteDto>
 
     @DELETE("notes/{recipeId}")
-    fun deleteNote(@Path("recipeId") id: String): Single<EmptyDto>
+    fun deleteNote(@Path("recipeId") id: String): Single<Response<EmptyDto>>
 }

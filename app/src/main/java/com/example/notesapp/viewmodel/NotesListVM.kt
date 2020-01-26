@@ -25,6 +25,7 @@ class NotesListVM @Inject constructor(private var dataManager: NotesDataManager)
 
     private fun onRecipesLoaded(list: List<Note>) {
         loading.value = false
+        recipesList.clear()
         recipesList.addAll(list)
     }
 

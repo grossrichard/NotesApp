@@ -54,7 +54,6 @@ class NoteDetailFragment : BaseMvvmFragment<FragmentNoteDetailBinding, NoteDetai
         menu.findItem(R.id.action_confirm).isVisible = !visibility
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

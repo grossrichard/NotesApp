@@ -3,6 +3,7 @@ package com.example.notesapp.api
 import com.example.notesapp.api.dto.EmptyDto
 import com.example.notesapp.api.dto.NoteDto
 import io.reactivex.Single
+import retrofit2.Response
 import java.util.concurrent.TimeUnit
 
 /**
@@ -29,8 +30,8 @@ class NotesApiDefinitionMock : NotesApiDefinition {
             .delay(MOCK_RESPONSE_DURATION_MILLIS, TimeUnit.MILLISECONDS)
     }
 
-    override fun deleteNote(id: String): Single<EmptyDto> =
-        Single.just(EmptyDto())
+    override fun deleteNote(id: String): Single<Response<EmptyDto>> =
+        Single.just(Response.success(EmptyDto()))
             .delay(MOCK_RESPONSE_DURATION_MILLIS, TimeUnit.MILLISECONDS)
 
     override fun loadNoteDetail(id: String): Single<NoteDto> =

@@ -5,15 +5,16 @@
     <string name="create">Create</string>
     <string name="delete">Delete</string>
     <string name="edit">Update</string>
+    <string name="refresh">Refresh</string>
 
     <!--note list-->
-
+    <string name="no_notes_available">No notes available</string>
 
     <!--note detail-->
-    <string name="note_detail_title_create">Create new note</string>
+    <string name="note_detail_title_create">Create new note?</string>
     <string name="note_detail_title_default">Note detail</string>
-    <string name="note_detail_title_edit">Edit note</string>
-    <string name="note_detail_title_delete">Delete note</string>
+    <string name="note_detail_title_edit">Edit note?</string>
+    <string name="note_detail_title_delete">Delete note?</string>
 
 
     <!--dialogs-->

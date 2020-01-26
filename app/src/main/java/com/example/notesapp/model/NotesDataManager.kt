@@ -2,6 +2,7 @@ package com.example.notesapp.model
 
 import com.example.notesapp.api.Converter
 import com.example.notesapp.api.RecipeApiService
+import com.example.notesapp.api.dto.EmptyDto
 import com.example.notesapp.db.AppDatabase
 import com.example.notesapp.entity.Note
 import com.example.notesapp.skeleton.mvvm.BaseDataManager
@@ -23,8 +24,8 @@ class NotesDataManager @Inject constructor(
     fun loadNotes(): Single<List<Note>> =
         apiService.service.loadNotes()
             .map { Converter.convert(it) }
-            .doOnSuccess { db.noteDao().addAll(it) }
-            .onErrorResumeNext { Single.just(db.noteDao().getAll()) }
+//            .doOnSuccess { db.noteDao().addAll(it) }
+//            .onErrorResumeNext { Single.just(db.noteDao().getAll()) }
 
     fun createNote(note: Note): Single<Note> =
         apiService.service.createNote(Converter.convert(note)).map { Converter.convert(it) }
@@ -38,4 +39,5 @@ class NotesDataManager @Inject constructor(
         apiService.service.updateNote(id, Converter.convert(note)).map { Converter.convert(it) }
 
     fun deleteNote(id: String) = apiService.service.deleteNote(id)
+        .map { Single.just(EmptyDto()) }
 }

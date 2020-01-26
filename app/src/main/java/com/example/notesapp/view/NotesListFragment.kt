@@ -1,7 +1,10 @@
 package com.example.notesapp.view
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import androidx.activity.OnBackPressedCallback
+import androidx.activity.addCallback
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.notesapp.R
@@ -12,6 +15,7 @@ import com.example.notesapp.util.UiUtils
 import com.example.notesapp.viewmodel.NotesListVM
 import kotlinx.android.synthetic.main.fragment_note_list.*
 import kotlin.reflect.KClass
+
 
 /**
  * Created by Richard Gross on 2020-01-13
@@ -35,6 +39,11 @@ class NotesListFragment : BaseMvvmFragment<FragmentNoteListBinding, NotesListVM>
                 R.id.action_add -> {
                     Navigation.findNavController(view)
                         .navigate(NotesListFragmentDirections.navigateNotesListToNoteDetail(mode = NoteDetailMode.CREATE))
+                    true
+                }
+
+                R.id.action_refresh -> {
+                    viewModel.loadRecipes()
                     true
                 }
 
