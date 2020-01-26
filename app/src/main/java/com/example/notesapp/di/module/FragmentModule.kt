@@ -3,10 +3,8 @@ package com.example.notesapp.di.module
 import androidx.lifecycle.ViewModel
 import com.example.notesapp.di.ViewModelBuilder
 import com.example.notesapp.di.ViewModelKey
-import com.example.notesapp.view.AddRecipeFragment
 import com.example.notesapp.view.NoteDetailFragment
 import com.example.notesapp.view.NotesListFragment
-import com.example.notesapp.viewmodel.AddRecipeVM
 import com.example.notesapp.viewmodel.NoteDetailVM
 import com.example.notesapp.viewmodel.NotesListVM
 import dagger.Binds
@@ -37,12 +35,4 @@ abstract class FragmentModule {
     @IntoMap
     @ViewModelKey(NoteDetailVM::class)
     abstract fun recipeDetailVM(vm: NoteDetailVM): ViewModel
-
-    @ContributesAndroidInjector(modules = [ViewModelBuilder::class])
-    abstract fun addRecipeFragment(): AddRecipeFragment
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(AddRecipeVM::class)
-    abstract fun addRecipeVM(vm: AddRecipeVM): ViewModel
 }

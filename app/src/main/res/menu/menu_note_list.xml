@@ -4,18 +4,19 @@
     <item
         android:id="@+id/action_add"
         android:icon="@drawable/ic_add"
-        android:title="@string/add"
+        android:title="@string/create"
         app:showAsAction="ifRoom" />
 
-    <item
-        android:id="@+id/action_edit"
-        android:icon="@drawable/ic_edit"
-        android:title="@string/edit"
-        app:showAsAction="ifRoom" />
+<!--    <item-->
+<!--        android:id="@+id/action_edit"-->
+<!--        android:checkable="true"-->
+<!--        android:icon="@drawable/ic_edit"-->
+<!--        android:title="@string/edit"-->
+<!--        app:showAsAction="ifRoom" />-->
 
-    <item
-        android:id="@+id/action_remove"
-        android:icon="@drawable/ic_remove"
-        android:title="@string/add"
-        app:showAsAction="ifRoom" />
+<!--    <item-->
+<!--        android:id="@+id/action_remove"-->
+<!--        android:icon="@drawable/ic_remove"-->
+<!--        android:title="@string/create"-->
+<!--        app:showAsAction="ifRoom" />-->
 </menu>

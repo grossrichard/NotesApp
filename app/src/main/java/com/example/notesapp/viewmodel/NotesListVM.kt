@@ -2,6 +2,7 @@ package com.example.notesapp.viewmodel
 
 import androidx.databinding.ObservableArrayList
 import com.example.notesapp.entity.Note
+import com.example.notesapp.entity.NoteDetailMode
 import com.example.notesapp.model.NotesDataManager
 import com.example.notesapp.skeleton.mvvm.BaseViewModel
 import com.example.notesapp.skeleton.mvvm.event.NavigateEvent
@@ -28,7 +29,14 @@ class NotesListVM @Inject constructor(private var dataManager: NotesDataManager)
     }
 
     fun onItemClicked(note: Note) {
-        publish(NavigateEvent(NotesListFragmentDirections.navigateNotesListToNoteDetail(note.id)))
+        publish(
+            NavigateEvent(
+                NotesListFragmentDirections.navigateNotesListToNoteDetail(
+                    note.id,
+                    NoteDetailMode.READ
+                )
+            )
+        )
     }
 }
 

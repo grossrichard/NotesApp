@@ -1,5 +1,6 @@
 package com.example.notesapp.api
 
+import com.example.notesapp.api.dto.EmptyDto
 import com.example.notesapp.api.dto.NoteDto
 import io.reactivex.Single
 import java.util.concurrent.TimeUnit
@@ -18,7 +19,7 @@ class NotesApiDefinitionMock : NotesApiDefinition {
             .delay(MOCK_RESPONSE_DURATION_MILLIS, TimeUnit.MILLISECONDS)
     }
 
-    override fun addNote(note: NoteDto): Single<NoteDto> {
+    override fun createNote(note: NoteDto): Single<NoteDto> {
         return Single.just(note)
             .delay(MOCK_RESPONSE_DURATION_MILLIS, TimeUnit.MILLISECONDS)
     }
@@ -28,9 +29,9 @@ class NotesApiDefinitionMock : NotesApiDefinition {
             .delay(MOCK_RESPONSE_DURATION_MILLIS, TimeUnit.MILLISECONDS)
     }
 
-    override fun deleteNote(id: String) {
-        // todo implement
-    }
+    override fun deleteNote(id: String): Single<EmptyDto> =
+        Single.just(EmptyDto())
+            .delay(MOCK_RESPONSE_DURATION_MILLIS, TimeUnit.MILLISECONDS)
 
     override fun loadNoteDetail(id: String): Single<NoteDto> =
         Single.just(MockDataProvider.createLoadRecipeDetailResp())

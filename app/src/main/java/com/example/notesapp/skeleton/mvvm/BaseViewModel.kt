@@ -23,6 +23,8 @@ open class BaseViewModel : ViewModel(), LifecycleObserver {
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun onViewCreated() {
+        initData()
+        loadData()
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)

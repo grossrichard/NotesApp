@@ -6,6 +6,7 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.notesapp.R
 import com.example.notesapp.databinding.FragmentNoteListBinding
+import com.example.notesapp.entity.NoteDetailMode
 import com.example.notesapp.skeleton.mvvm.BaseMvvmFragment
 import com.example.notesapp.util.UiUtils
 import com.example.notesapp.viewmodel.NotesListVM
@@ -33,19 +34,7 @@ class NotesListFragment : BaseMvvmFragment<FragmentNoteListBinding, NotesListVM>
             when (it.itemId) {
                 R.id.action_add -> {
                     Navigation.findNavController(view)
-                        .navigate(NotesListFragmentDirections.navigateNotesListToNoteDetail("someId"))
-                    true
-                }
-
-                R.id.action_remove -> {
-                    Navigation.findNavController(view)
-                        .navigate(NotesListFragmentDirections.navigateNotesListToNoteDetail("someId"))
-                    true
-                }
-
-                R.id.action_edit -> {
-                    Navigation.findNavController(view)
-                        .navigate(NotesListFragmentDirections.navigateNotesListToNoteDetail("someId"))
+                        .navigate(NotesListFragmentDirections.navigateNotesListToNoteDetail(mode = NoteDetailMode.CREATE))
                     true
                 }
 

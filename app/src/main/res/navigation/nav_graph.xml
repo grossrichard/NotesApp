@@ -15,7 +15,14 @@
             app:destination="@+id/recipe_detail_fragment">
             <argument
                 android:name="id"
-                app:argType="string" />
+                android:defaultValue="@null"
+                app:argType="string"
+                app:nullable="true" />
+
+            <argument
+                android:name="mode"
+                android:defaultValue="READ"
+                app:argType="com.example.notesapp.entity.NoteDetailMode" />
         </action>
 
     </fragment>
@@ -26,6 +33,13 @@
         tools:layout="@layout/fragment_note_detail">
         <argument
             android:name="id"
-            app:argType="string" />
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+
+        <argument
+            android:name="mode"
+            android:defaultValue="READ"
+            app:argType="com.example.notesapp.entity.NoteDetailMode" />
     </fragment>
 </navigation>

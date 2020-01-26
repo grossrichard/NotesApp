@@ -26,19 +26,16 @@ class NotesDataManager @Inject constructor(
             .doOnSuccess { db.noteDao().addAll(it) }
             .onErrorResumeNext { Single.just(db.noteDao().getAll()) }
 
-    fun addNote(note: Note): Single<Note> =
-        apiService.service.addNote(Converter.convert(note)).map { Converter.convert(it) }
+    fun createNote(note: Note): Single<Note> =
+        apiService.service.createNote(Converter.convert(note)).map { Converter.convert(it) }
 
     fun loadNoteDetail(id: String): Single<Note> =
-        apiService.service.loadNoteDetail(id)
-            .map { Converter.convert(it) }
+        apiService.service.loadNoteDetail(id).map { Converter.convert(it) }
 //            .doOnSuccess { db.noteDao().addRecipeDetail(it) }
 //            .onErrorResumeNext { Single.just(db.recipeDetailDao().getRecipeDetail(id)) }
 
-    //todo how to implement?
-    fun updateNote(id: String, note: Note): Single<Note> =
+    fun editNote(id: String, note: Note): Single<Note> =
         apiService.service.updateNote(id, Converter.convert(note)).map { Converter.convert(it) }
 
-    //todo how to implement?
     fun deleteNote(id: String) = apiService.service.deleteNote(id)
 }

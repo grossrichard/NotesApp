@@ -7,6 +7,8 @@
 
         <import type="com.example.notesapp.R" />
 
+        <import type="com.example.notesapp.util.NoteUtils" />
+
         <variable
             name="vm"
             type="com.example.notesapp.viewmodel.NoteDetailVM" />
@@ -32,8 +34,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:menu="@menu/menu_note_list"
-                app:title="@string/app_name" />
+                app:navigationIcon="@drawable/ic_back"
+                app:title="@{NoteUtils.getNoteDetailTitle(vm.mode)}" />
 
             <View
                 android:id="@+id/divider"
@@ -49,13 +51,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
+                android:importantForAutofill="no"
                 android:padding="@dimen/medium_gap"
                 android:text="@={vm.title}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider"
-                android:inputType="text"
-                android:importantForAutofill="no" />
+                app:layout_constraintTop_toBottomOf="@+id/divider" />
 
             <androidx.constraintlayout.widget.Group
                 android:layout_width="match_parent"

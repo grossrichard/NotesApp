@@ -1,5 +1,6 @@
 package com.example.notesapp.api
 
+import com.example.notesapp.api.dto.EmptyDto
 import com.example.notesapp.api.dto.NoteDto
 import io.reactivex.Single
 import retrofit2.http.*
@@ -13,13 +14,13 @@ interface NotesApiDefinition {
     fun loadNotes(): Single<List<NoteDto>>
 
     @POST("notes")
-    fun addNote(@Body note: NoteDto): Single<NoteDto>
+    fun createNote(@Body note: NoteDto): Single<NoteDto>
 
     @PUT("notes/{recipeId}")
     fun updateNote(@Path("recipeId") id: String, note: NoteDto): Single<NoteDto>
 
     @DELETE("notes/{recipeId}")
-    fun deleteNote(@Path("recipeId") id: String)
+    fun deleteNote(@Path("recipeId") id: String): Single<EmptyDto>
 
     @GET("notes/{recipeId}")
     fun loadNoteDetail(@Path("recipeId") id: String): Single<NoteDto>
