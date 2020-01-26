@@ -7,17 +7,11 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.Navigation
-import androidx.navigation.findNavController
 import com.example.notesapp.R
 import com.example.notesapp.databinding.FragmentNoteDetailBinding
 import com.example.notesapp.skeleton.mvvm.BaseMvvmFragment
 import com.example.notesapp.util.UiUtils
 import com.example.notesapp.viewmodel.NoteDetailVM
-import com.google.android.material.appbar.AppBarLayout
-import kotlinx.android.synthetic.main.fragment_note_detail.*
-import kotlin.math.abs
 import kotlin.reflect.KClass
 
 /**
@@ -37,7 +31,7 @@ class NoteDetailFragment : BaseMvvmFragment<FragmentNoteDetailBinding, NoteDetai
         super.onCreate(savedInstanceState)
 
         arguments?.let {
-            NoteDetailFragmentArgs.fromBundle(it).recipeId?.let(viewModel::loadNoteDetail)
+            NoteDetailFragmentArgs.fromBundle(it).id.let(viewModel::loadNoteDetail)
         }
     }
 

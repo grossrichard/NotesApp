@@ -18,9 +18,8 @@
     <dimen name="large_gap_48">48dp</dimen>
     <dimen name="xlarge_gap">64dp</dimen>
 
-    <dimen name="recipe_list_item_height">100dp</dimen>
     <dimen name="toolbar_padding">72dp</dimen>
     <dimen name="progress_size">42dp</dimen>
-    <dimen name="divider_height">2dp</dimen>
+    <dimen name="divider_height">1dp</dimen>
 
 </resources>

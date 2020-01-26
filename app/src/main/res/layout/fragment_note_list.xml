@@ -15,50 +15,64 @@
 
     </data>
 
-    <FrameLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:visible_or_gone="@{!vm.loading}"
             tools:visibility="visible">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="?attr/actionBarSize"
                 app:contentInsetStartWithNavigation="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 app:menu="@menu/menu_note_list"
                 app:title="@string/app_name" />
 
             <View
-                android:layout_width="match_parent"
+                android:id="@+id/divider"
+                android:layout_width="0dp"
                 android:layout_height="@dimen/divider_height"
-                android:background="@drawable/divider_pink_light" />
+                android:background="@drawable/item_list_divider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_recipes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/medium_gap"
-                android:layout_marginTop="@dimen/medium_gap"
-                android:layout_marginRight="@dimen/medium_gap"
                 app:itemLayoutId="@{R.layout.item_note}"
                 app:items="@{vm.recipesList}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider"
                 app:viewModel="@{vm}" />
 
-        </LinearLayout>
+            <androidx.constraintlayout.widget.Group
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:constraint_referenced_ids="toolbar,rv_recipes,divider"
+                app:visible_or_gone="@{!vm.loading}" />
 
-        <ProgressBar
-            android:layout_width="@dimen/progress_size"
-            android:layout_height="@dimen/progress_size"
-            android:layout_gravity="center"
-            android:layout_marginTop="4dp"
-            app:visible_or_gone="@{vm.loading}" />
-
-    </FrameLayout>
-
+            <ProgressBar
+                android:layout_width="@dimen/progress_size"
+                android:layout_height="@dimen/progress_size"
+                android:layout_gravity="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.33"
+                app:visible_or_gone="@{vm.loading}" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </layout>

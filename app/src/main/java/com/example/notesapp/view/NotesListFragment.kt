@@ -3,10 +3,11 @@ package com.example.notesapp.view
 import android.os.Bundle
 import android.view.View
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.notesapp.R
 import com.example.notesapp.databinding.FragmentNoteListBinding
-import com.example.notesapp.skeleton.adapter.decoration.DividerItemDecoration
 import com.example.notesapp.skeleton.mvvm.BaseMvvmFragment
+import com.example.notesapp.util.UiUtils
 import com.example.notesapp.viewmodel.NotesListVM
 import kotlinx.android.synthetic.main.fragment_note_list.*
 import kotlin.reflect.KClass
@@ -30,20 +31,31 @@ class NotesListFragment : BaseMvvmFragment<FragmentNoteListBinding, NotesListVM>
 
         toolbar.setOnMenuItemClickListener {
             when (it.itemId) {
-                R.id.action_add_recipe -> {
+                R.id.action_add -> {
                     Navigation.findNavController(view)
-//                        .navigate(RecipeListFragmentDirections.navigateRecipeListToAddRecipe())
+                        .navigate(NotesListFragmentDirections.navigateNotesListToNoteDetail("someId"))
                     true
                 }
+
+                R.id.action_remove -> {
+                    Navigation.findNavController(view)
+                        .navigate(NotesListFragmentDirections.navigateNotesListToNoteDetail("someId"))
+                    true
+                }
+
+                R.id.action_edit -> {
+                    Navigation.findNavController(view)
+                        .navigate(NotesListFragmentDirections.navigateNotesListToNoteDetail("someId"))
+                    true
+                }
+
                 else -> super.onOptionsItemSelected(it)
             }
         }
 
-        rv_recipes.addItemDecoration(
-            DividerItemDecoration(
-                context!!,
-                R.drawable.divider_pink_light
-            )
-        )
+        rv_recipes.addItemDecoration(DividerItemDecoration(
+            context,
+            DividerItemDecoration.VERTICAL
+        ).apply { setDrawable(UiUtils.getDrawable(R.drawable.item_list_divider)!!) })
     }
 }

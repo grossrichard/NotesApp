@@ -11,13 +11,11 @@
         tools:layout="@layout/fragment_note_list">
 
         <action
-            android:id="@+id/navigate_recipe_list_to_recipe_detail"
+            android:id="@+id/navigate_notes_list_to_note_detail"
             app:destination="@+id/recipe_detail_fragment">
             <argument
-                android:name="recipeId"
-                android:defaultValue="@null"
-                app:argType="string"
-                app:nullable="true" />
+                android:name="id"
+                app:argType="string" />
         </action>
 
     </fragment>
@@ -27,16 +25,7 @@
         android:name="com.example.notesapp.view.NoteDetailFragment"
         tools:layout="@layout/fragment_note_detail">
         <argument
-            android:name="recipeId"
-            android:defaultValue="@null"
-            app:argType="string"
-            app:nullable="true" />
+            android:name="id"
+            app:argType="string" />
     </fragment>
-
-
-    <!--    <fragment-->
-    <!--        android:id="@+id/add_recipe_fragment"-->
-    <!--        android:name="com.example.notesapp.view.AddRecipeFragment"-->
-    <!--        tools:layout="@layout/fragment_add_recipe" />-->
-
 </navigation>

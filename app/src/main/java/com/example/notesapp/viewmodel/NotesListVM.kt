@@ -4,6 +4,8 @@ import androidx.databinding.ObservableArrayList
 import com.example.notesapp.entity.Note
 import com.example.notesapp.model.NotesDataManager
 import com.example.notesapp.skeleton.mvvm.BaseViewModel
+import com.example.notesapp.skeleton.mvvm.event.NavigateEvent
+import com.example.notesapp.view.NotesListFragmentDirections
 import io.reactivex.functions.Consumer
 import javax.inject.Inject
 
@@ -22,12 +24,11 @@ class NotesListVM @Inject constructor(private var dataManager: NotesDataManager)
 
     private fun onRecipesLoaded(list: List<Note>) {
         loading.value = false
-        recipesList.clear()
         recipesList.addAll(list)
     }
 
     fun onItemClicked(note: Note) {
-//        publish(NavigateEvent(RecipeListFragmentDirections.navigateRecipeListToRecipeDetail(note.id)))
+        publish(NavigateEvent(NotesListFragmentDirections.navigateNotesListToNoteDetail(note.id)))
     }
 }
 
