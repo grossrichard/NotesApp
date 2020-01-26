@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">NotesApp</string>
+
+    <string name="recipe_list_duration">%1$d min.</string>
+    <string name="recipe_detail_rate_recipe">Rate this app</string>
+    <string name="ingredients_list_dot">•</string>
+    <string name="ingredients_label">Ingredients</string>
+    <string name="info_label">Description</string>
+    <string name="add">Add</string>
+    <string name="add_recipe_toolbar_tittle">Add Recipe</string>
+    <string name="add_recipe_name_hint">Recipe name</string>
+    <string name="add_recipe_info_hint">Introductory text</string>
+    <string name="add_recipe_ingredients_label">INGREDIENTS</string>
+    <string name="add_recipe_ingredient_hint">Your ingredient</string>
+    <string name="add_recipe_description_hint">Description</string>
+    <string name="add_recipe_duration_hint">Duration</string>
+
+
+    <string name="dialog_ok">OK</string>
+    <string name="dialog_error_title">Error</string>
+    <string name="dialog_error_msg">Error occurred!</string>
+    <string name="dialog_no_internet_available">No internet available!</string>
+    <string name="dialog_add_recipe_added_success">Recipe has been successful added</string>
+    <string name="dialog_add_recipe_added_error">Recipe has been successful added</string>
+
+</resources>

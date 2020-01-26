@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:id="@+id/layout_container"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:layout_marginLeft="@dimen/space_medium"
+              android:layout_marginRight="@dimen/space_medium"
+              android:background="@android:color/white"
+              android:gravity="center_horizontal"
+              android:minWidth="@dimen/general_dialog_min_width"
+              android:orientation="vertical">
+
+    <!-- ICON FOR DIALOG-->
+    <ImageView
+        android:id="@+id/img_icon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/space_medium"/>
+
+    <FrameLayout
+        android:id="@+id/layout_custom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <!-- MESSAGE -->
+    <TextView
+        android:id="@+id/txt_message_dialog"
+        style="@style/md.Title"
+        tools:text="Main text\nMain text"/>
+
+    <!-- MESSAGE GRAY-->
+    <TextView
+        android:id="@+id/txt_message_dialog_gray"
+        style="@style/md.SubTitle"
+        tools:text="Some other text \nSome other text "/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_thickness"
+        android:background="@color/white_darker"/>
+
+    <!-- TWO BUTTONS LAYOUT -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- NEGATIVE BUTTON-->
+        <Button
+            android:id="@+id/btn_negative"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/space_xxlarge"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:textColor="@color/gray_dark"
+            android:textSize="15dp"
+            tools:text="negative button"/>
+
+        <View
+            android:id="@+id/view_btn_separator"
+            android:layout_width="@dimen/line_thickness"
+            android:layout_height="@dimen/space_xlarge"
+            android:layout_marginBottom="@dimen/space_small"
+            android:layout_marginTop="@dimen/space_small"
+            android:background="@color/white_darker"/>
+
+        <!-- POSITIVE BUTTON -->
+        <Button
+            android:id="@+id/btn_positive"
+            android:layout_width="0dp"
+            android:minHeight="@dimen/space_xxlarge"
+            android:layout_height="@dimen/space_xxlarge"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:textColor="@color/gray_dark"
+            android:textSize="15dp"
+            tools:text="positive button"/>
+    </LinearLayout>
+
+</LinearLayout>

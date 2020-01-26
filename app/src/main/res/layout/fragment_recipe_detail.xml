@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.example.notesapp.R" />
+
+        <variable
+            name="vm"
+            type="com.example.notesapp.viewmodel.RecipeDetailVM" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/content_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:fitsSystemWindows="true">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/toolbar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:fitsSystemWindows="true"
+                app:collapsedTitleGravity="center"
+                app:collapsedTitleTextAppearance="@style/Text"
+                app:contentScrim="@color/white"
+                app:expandedTitleGravity="center"
+                app:expandedTitleTextAppearance="@android:color/transparent"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:scrimAnimationDuration="200">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/expanded_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_collapseMode="parallax">
+
+                    <ImageView
+                        android:id="@+id/img_expanded"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/img_big"
+                        android:tint="@color/black_transparent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                    <TextView
+                        android:id="@+id/txt_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/medium_gap"
+                        android:layout_marginEnd="@dimen/medium_gap"
+                        android:layout_marginBottom="@dimen/large_gap"
+                        android:text="@{vm.name}"
+                        android:textAppearance="@style/Text.RobotoMedium.White.24"
+                        app:layout_constraintBottom_toTopOf="@+id/bottom_background"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:text="Cokoladova nuleta s pomerancem" />
+
+                    <View
+                        android:id="@+id/bottom_background"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:background="@color/pink"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/rtb_score" />
+
+                    <RatingBar
+                        android:id="@+id/rtb_score"
+                        style="@android:style/Widget.DeviceDefault.Light.RatingBar.Small"
+                        progress_color="@{R.color.white}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="@dimen/medium_gap"
+                        android:background="@color/pink"
+                        android:max="100"
+                        android:numStars="5"
+                        android:paddingTop="@dimen/medium_gap"
+                        android:paddingBottom="@dimen/medium_gap"
+                        android:rating="@{vm.score}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+
+                    <ImageView
+                        android:id="@+id/img_duration"
+                        android:layout_width="0dp"
+                        android:layout_height="16dp"
+                        android:layout_marginEnd="@dimen/small_gap"
+                        android:src="@drawable/ic_duration"
+                        android:tint="@color/white"
+                        app:layout_constraintBottom_toBottomOf="@id/txt_duration"
+                        app:layout_constraintEnd_toStartOf="@+id/txt_duration"
+                        app:layout_constraintTop_toTopOf="@+id/txt_duration" />
+
+                    <TextView
+                        android:id="@+id/txt_duration"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/medium_gap"
+                        android:layout_marginEnd="@dimen/medium_gap"
+                        android:text="@{@string/recipe_list_duration(vm.duration)}"
+                        android:textAppearance="@style/Text.RobotoRegular.White.16"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/rtb_score"
+                        tools:layout_editor_absoluteY="347dp"
+                        tools:text="20 min." />
+
+                    <androidx.constraintlayout.widget.Group
+                        visible_or_gone="@{!vm.loading}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:constraint_referenced_ids="txt_duration,img_duration,rtb_score,bottom_background" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/collapsing_toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:contentInsetStartWithNavigation="0dp"
+                    app:layout_collapseMode="pin"
+                    app:navigationIcon="@drawable/ic_back_white" />
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/scroll_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/content"
+                    visible_or_gone="@{!vm.loading}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    tools:visibility="visible">
+
+                    <TextView
+                        android:id="@+id/txt_prolog"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/large_gap"
+                        android:paddingLeft="@dimen/medium_gap"
+                        android:paddingRight="@dimen/medium_gap"
+                        android:text="@{vm.info}"
+                        android:textAlignment="viewStart"
+                        android:textAppearance="@style/Text.RobotoRegular.Black.16"
+                        tools:text="Simple but fast and furiouso" />
+
+                    <TextView
+                        android:id="@+id/txt_ingredients_header"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/large_gap"
+                        android:paddingLeft="@dimen/medium_gap"
+                        android:paddingRight="@dimen/medium_gap"
+                        android:text="@string/ingredients_label"
+                        android:textAppearance="@style/Text.RobotoBold.Blue.18" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_ingredients"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/medium_gap"
+                        android:paddingLeft="@dimen/medium_gap"
+                        android:paddingRight="@dimen/medium_gap"
+                        app:itemLayoutId="@{R.layout.item_detail_ingredient}"
+                        app:items="@{vm.ingredients}"
+                        app:viewModel="@{vm}" />
+
+                    <TextView
+                        android:id="@+id/txt_instructions_header"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/large_gap"
+                        android:paddingLeft="@dimen/medium_gap"
+                        android:paddingRight="@dimen/medium_gap"
+                        android:text="@string/info_label"
+                        android:textAppearance="@style/Text.RobotoBold.Blue.18" />
+
+                    <TextView
+                        android:id="@+id/txt_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/medium_gap"
+                        android:paddingLeft="@dimen/medium_gap"
+                        android:paddingRight="@dimen/medium_gap"
+                        android:text="@{vm.description}"
+                        android:textAppearance="@style/Text.RobotoRegular.Black.16"
+                        tools:text="Cover the saltfish in cold water. Let soak overnight (minimum 8 hours) changing the water several times (this removes most of the salt)     Bring a pan of cold water to the boil and gently simmer the fish for 20 minutes (until the fish is tender).     Chop the onion, sweet pepper, chilli pepper and tomato.     Remove the fish from water and allow to cool.     Remove all of bones and skin then flake the flesh of the fish.       Melt the butter in a frying pan and stir fry the onion, black pepper, sweet pepper, chilli and thyme for about 3 minutes.      Add the tomatoes and flaked fish and stir-fry for another 10 minutes     Add the Ackee and cook until hot throughout. Stir gently to avoid breaking-up the Ackee     Serve with yam, green banana, fried dumplings and Irish potato" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/large_gap"
+                        android:background="@color/blue"
+                        android:orientation="vertical"
+                        android:paddingTop="@dimen/large_gap"
+                        android:paddingBottom="@dimen/large_gap">
+
+                        <TextView
+                            android:id="@+id/txt_rate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="@dimen/medium_gap"
+                            android:gravity="center_horizontal"
+                            android:text="@string/recipe_detail_rate_recipe"
+                            android:textAppearance="@style/Text.RobotoBold.White.18" />
+
+                        <RatingBar
+                            android:id="@+id/rtb_rate"
+                            style="@style/Widget.AppCompat.RatingBar.Indicator"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:isIndicator="@{vm.ratingAvailable}"
+                            android:max="100"
+                            android:numStars="5"
+                            android:rating="@={vm.newRating}" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <ProgressBar
+                    android:layout_width="@dimen/progress_size"
+                    android:layout_height="@dimen/progress_size"
+                    android:layout_gravity="top|center_horizontal"
+                    android:layout_marginTop="@dimen/xlarge_gap"
+                    app:visible_or_gone="@{vm.loading}" />
+            </FrameLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>

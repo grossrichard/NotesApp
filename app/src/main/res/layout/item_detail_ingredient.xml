@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.example.notesapp.R" />
+
+        <variable
+            name="item"
+            type="String" />
+
+        <variable
+            name="vm"
+            type="com.example.notesapp.viewmodel.RecipeDetailVM" />
+
+    </data>
+
+    <TextView
+        android:id="@+id/txt_ingredient"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@{item}"
+        tools:text="Lorem ipsum dolor sit amet" />
+</layout>
