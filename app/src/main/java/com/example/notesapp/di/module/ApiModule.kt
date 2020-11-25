@@ -1,8 +1,8 @@
 package com.example.notesapp.di.module
 
 import com.example.notesapp.Application
-import com.example.notesapp.api.ApiConfig
-import com.example.notesapp.api.NotesApiDefinition
+import com.example.notesapp.infrastructure.api.ApiConfig
+import com.example.notesapp.infrastructure.api.NotesApiDefinition
 import com.google.gson.Gson
 import com.readystatesoftware.chuck.ChuckInterceptor
 import dagger.Module

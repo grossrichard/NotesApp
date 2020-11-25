@@ -11,7 +11,7 @@
 
         <variable
             name="vm"
-            type="com.example.notesapp.viewmodel.NotesListVM" />
+            type="com.example.notesapp.presentation.viewmodel.NotesListVM" />
 
     </data>
 
@@ -27,13 +27,13 @@
         <TextView
             android:id="@+id/textView"
             android:layout_width="0dp"
-            android:textSize="14sp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/medium_gap"
             android:ellipsize="end"
             android:maxLines="1"
             android:text="@{item.title}"
             android:textColor="@color/black"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageView"

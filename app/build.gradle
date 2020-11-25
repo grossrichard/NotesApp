@@ -32,7 +32,7 @@ android {
 }
 
 dependencies {
-    def NAV_VERSION = "2.2.0"
+    def NAV_VERSION = "2.3.1"
     def DAGGER_VERSION = "2.25.4"
     def RETROFIT_VERSION = "2.4.0"
     def ROOM_VERSION = "2.2.3"
@@ -48,8 +48,8 @@ dependencies {
     implementation 'com.google.android.material:material:1.0.0'
 
     // Java language implementation
-    implementation "androidx.navigation:navigation-fragment:$NAV_VERSION"
-    implementation "androidx.navigation:navigation-ui:$NAV_VERSION"
+    implementation "androidx.navigation:navigation-fragment-ktx:$NAV_VERSION"
+    implementation "androidx.navigation:navigation-ui-ktx:$NAV_VERSION"
 
     // navigation components
     implementation "androidx.navigation:navigation-fragment-ktx:$NAV_VERSION"

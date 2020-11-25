@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/recipe_list_fragment"
-        android:name="com.example.notesapp.view.NotesListFragment"
+        android:name="com.example.notesapp.presentation.view.NotesListFragment"
         tools:layout="@layout/fragment_note_list">
 
         <action
@@ -29,7 +29,7 @@
 
     <fragment
         android:id="@+id/recipe_detail_fragment"
-        android:name="com.example.notesapp.view.NoteDetailFragment"
+        android:name="com.example.notesapp.presentation.view.NoteDetailFragment"
         tools:layout="@layout/fragment_note_detail">
         <argument
             android:name="id"

@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import com.example.notesapp.BR
 import com.example.notesapp.skeleton.mvvm.event.*
-import com.example.notesapp.util.AlertDialogCreator
+import com.example.notesapp.presentation.util.AlertDialogCreator
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 import kotlin.reflect.KClass

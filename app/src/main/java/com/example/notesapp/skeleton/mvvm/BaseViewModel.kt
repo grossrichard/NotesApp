@@ -4,7 +4,7 @@ import androidx.lifecycle.*
 import com.example.notesapp.skeleton.mvvm.event.GenericErrorEvent
 import com.example.notesapp.skeleton.mvvm.event.LiveEvent
 import com.example.notesapp.skeleton.mvvm.event.LiveEventMap
-import com.example.notesapp.util.RxUtils
+import com.example.notesapp.presentation.util.RxUtils
 import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable

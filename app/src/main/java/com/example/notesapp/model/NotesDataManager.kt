@@ -1,9 +1,9 @@
 package com.example.notesapp.model
 
-import com.example.notesapp.api.Converter
-import com.example.notesapp.api.RecipeApiService
-import com.example.notesapp.api.dto.EmptyDto
-import com.example.notesapp.db.AppDatabase
+import com.example.notesapp.infrastructure.api.Converter
+import com.example.notesapp.infrastructure.api.NotesApiService
+import com.example.notesapp.infrastructure.api.dto.EmptyDto
+import com.example.notesapp.infrastructure.db.AppDatabase
 import com.example.notesapp.entity.Note
 import com.example.notesapp.skeleton.mvvm.BaseDataManager
 import io.reactivex.Single
@@ -16,7 +16,7 @@ import javax.inject.Singleton
 
 @Singleton
 class NotesDataManager @Inject constructor(
-    private val apiService: RecipeApiService,
+    private val apiService: NotesApiService,
     private val db: AppDatabase
 ) :
     BaseDataManager() {

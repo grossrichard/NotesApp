@@ -2,7 +2,7 @@ package com.example.notesapp.di.module
 
 import android.content.Context
 import androidx.room.Room
-import com.example.notesapp.db.AppDatabase
+import com.example.notesapp.infrastructure.db.AppDatabase
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
