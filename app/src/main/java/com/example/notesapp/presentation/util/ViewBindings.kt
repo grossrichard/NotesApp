@@ -18,7 +18,7 @@ import androidx.annotation.DimenRes
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
-import com.example.notesapp.Application
+import com.example.notesapp.App
 
 
 @BindingAdapter("backgroundResource")
@@ -37,12 +37,12 @@ fun setBackgroundResource(view: ViewGroup, resId: Int) {
 
 @BindingAdapter("textColorResource")
 fun setTextColor(editText: EditText, resId: Int?) {
-    resId?.let { editText.setTextColor(ContextCompat.getColor(Application.instance, it)) }
+    resId?.let { editText.setTextColor(ContextCompat.getColor(App.instance, it)) }
 }
 
 @BindingAdapter("textColorResource")
 fun setTextColor(textView: TextView, resId: Int?) {
-    resId?.let { textView.setTextColor(ContextCompat.getColor(Application.instance, it)) }
+    resId?.let { textView.setTextColor(ContextCompat.getColor(App.instance, it)) }
 }
 
 @BindingAdapter("visible_or_gone")
@@ -61,7 +61,7 @@ fun setTextOrGone(textView: TextView, stringRes: Int?) {
         textView.visibility = View.GONE
     } else {
         textView.visibility = View.VISIBLE
-        textView.text = Application.instance.resources.getString(stringRes)
+        textView.text = App.instance.resources.getString(stringRes)
     }
 }
 
@@ -71,7 +71,7 @@ fun setTextOrInvisible(textView: TextView, stringRes: Int?) {
         textView.visibility = View.INVISIBLE
     } else {
         textView.visibility = View.VISIBLE
-        textView.text = Application.instance.resources.getString(stringRes)
+        textView.text = App.instance.resources.getString(stringRes)
     }
 }
 
@@ -98,7 +98,7 @@ fun setWidth(view: View, width: Float) {
 
 @BindingAdapter("padding")
 fun setPadding(view: View, paddingRes: Int) {
-    val padding = Application.instance.resources.getDimension(paddingRes).toInt()
+    val padding = App.instance.resources.getDimension(paddingRes).toInt()
     view.setPadding(padding, padding, padding, padding)
 }
 
@@ -128,7 +128,7 @@ fun requestFocus(view: TextView, requestFocus: Boolean?) {
 @BindingAdapter("left_ImageSpan")
 fun leftImageSpan(textView: TextView, @DrawableRes imageRes: Int) {
     val spannable = SpannableString("  " + textView.text)
-    val drawable = ContextCompat.getDrawable(Application.instance, imageRes)
+    val drawable = ContextCompat.getDrawable(App.instance, imageRes)
     drawable?.let {
         drawable.setBounds(0, 0, textView.lineHeight, textView.lineHeight)
         val imageSpan = ImageSpan(drawable, ImageSpan.ALIGN_BOTTOM)
@@ -141,7 +141,7 @@ fun leftImageSpan(textView: TextView, @DrawableRes imageRes: Int) {
 @BindingAdapter("right_ImageSpan")
 fun rightImageSpan(textView: TextView, @DrawableRes imageRes: Int) {
     val spannable = SpannableString(StringBuilder(textView.text).append("  "))
-    val drawable = ContextCompat.getDrawable(Application.instance, imageRes)
+    val drawable = ContextCompat.getDrawable(App.instance, imageRes)
     drawable?.let {
         drawable.setBounds(0, 0, textView.lineHeight, textView.lineHeight)
         val imageSpan = ImageSpan(drawable, ImageSpan.ALIGN_BOTTOM)

@@ -13,9 +13,9 @@ import com.example.notesapp.entity.Note
 @Dao
 interface NoteDetailDao {
 
-    @Query("SELECT * FROM no WHERE id==:id")
-    fun getRecipeDetail(id: String): Note?
+    @Query("SELECT * FROM notes WHERE id==:id")
+    fun getNoteDetail(id: String): Note?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addRecipeDetail(note: Note)
+    fun addNoteDetail(note: Note)
 }

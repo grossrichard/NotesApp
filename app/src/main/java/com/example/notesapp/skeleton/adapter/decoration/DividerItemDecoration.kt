@@ -8,7 +8,6 @@ import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import androidx.core.view.children
 import androidx.recyclerview.widget.RecyclerView
-import com.example.notesapp.Application
 
 class DividerItemDecoration(context: Context, @DrawableRes dividerId: Int) :
     RecyclerView.ItemDecoration() {

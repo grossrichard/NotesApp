@@ -3,16 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/recipe_list_fragment">
+    app:startDestination="@id/note_list_fragment">
 
     <fragment
-        android:id="@+id/recipe_list_fragment"
+        android:id="@+id/note_list_fragment"
         android:name="com.example.notesapp.presentation.fragment.NotesListFragment"
         tools:layout="@layout/fragment_note_list">
 
         <action
             android:id="@+id/navigate_notes_list_to_note_detail"
-            app:destination="@+id/recipe_detail_fragment">
+            app:destination="@+id/note_detail_fragment">
             <argument
                 android:name="id"
                 android:defaultValue="@null"
@@ -28,7 +28,7 @@
     </fragment>
 
     <fragment
-        android:id="@+id/recipe_detail_fragment"
+        android:id="@+id/note_detail_fragment"
         android:name="com.example.notesapp.presentation.fragment.NoteDetailFragment"
         tools:layout="@layout/fragment_note_detail">
         <argument

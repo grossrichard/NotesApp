@@ -11,6 +11,7 @@ import com.example.notesapp.skeleton.mvvm.BaseMvvmFragment
 import com.example.notesapp.presentation.util.UiUtils
 import com.example.notesapp.presentation.viewmodel.NotesListVM
 import kotlinx.android.synthetic.main.fragment_note_list.*
+import org.koin.android.viewmodel.ext.android.viewModel
 import kotlin.reflect.KClass
 
 
@@ -21,11 +22,12 @@ class NotesListFragment : BaseMvvmFragment<FragmentNoteListBinding, NotesListVM>
 
     override val viewModelClass: KClass<NotesListVM> = NotesListVM::class
     override val layoutId: Int = R.layout.fragment_note_list
+    override val viewModel by viewModel<NotesListVM>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        viewModel.loadRecipes()
+        viewModel.loadNotes()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -40,7 +42,7 @@ class NotesListFragment : BaseMvvmFragment<FragmentNoteListBinding, NotesListVM>
                 }
 
                 R.id.action_refresh -> {
-                    viewModel.loadRecipes()
+                    viewModel.loadNotes()
                     true
                 }
 
@@ -48,7 +50,7 @@ class NotesListFragment : BaseMvvmFragment<FragmentNoteListBinding, NotesListVM>
             }
         }
 
-        rv_recipes.addItemDecoration(DividerItemDecoration(
+        rv_notes.addItemDecoration(DividerItemDecoration(
             context,
             DividerItemDecoration.VERTICAL
         ).apply { setDrawable(UiUtils.getDrawable(R.drawable.item_list_divider)!!) })

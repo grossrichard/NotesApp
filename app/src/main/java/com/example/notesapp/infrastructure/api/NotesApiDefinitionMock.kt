@@ -16,7 +16,7 @@ class NotesApiDefinitionMock : NotesApiDefinition {
     }
 
     override fun loadNotes(): Single<List<NoteDto>> {
-        return Single.just(MockDataProvider.createMockLoadRecipesResp())
+        return Single.just(MockDataProvider.createMockLoadNotesResp())
             .delay(MOCK_RESPONSE_DURATION_MILLIS, TimeUnit.MILLISECONDS)
     }
 
@@ -35,7 +35,7 @@ class NotesApiDefinitionMock : NotesApiDefinition {
             .delay(MOCK_RESPONSE_DURATION_MILLIS, TimeUnit.MILLISECONDS)
 
     override fun loadNoteDetail(id: String): Single<NoteDto> =
-        Single.just(MockDataProvider.createLoadRecipeDetailResp())
+        Single.just(MockDataProvider.createLoadNoteDetailResp())
             .delay(MOCK_RESPONSE_DURATION_MILLIS, TimeUnit.MILLISECONDS)
 
 }

@@ -5,7 +5,7 @@ import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
-import com.example.notesapp.Application
+import com.example.notesapp.App
 
 /**
  * Created by Richard Gross on 2020-01-24
@@ -13,16 +13,16 @@ import com.example.notesapp.Application
 object UiUtils {
 
     fun getColor(@ColorRes colorRes: Int): Int {
-        return ContextCompat.getColor(Application.instance, colorRes)
+        return ContextCompat.getColor(App.instance, colorRes)
     }
 
     fun getDrawable(@DrawableRes drawableRes: Int): Drawable? {
-        return ContextCompat.getDrawable(Application.instance, drawableRes)
+        return ContextCompat.getDrawable(App.instance, drawableRes)
     }
 
 
     fun getString(@StringRes stringRes: Int): String? {
-        return Application.instance.getString(stringRes)
+        return App.instance.getString(stringRes)
     }
 
 }

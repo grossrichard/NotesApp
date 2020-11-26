@@ -5,5 +5,5 @@ package com.example.notesapp.infrastructure.api
  */
 object ApiConfig {
 
-    const val BASE_ENDPOINT_URL= "https://private-anon-189b9880b8-note10.apiary-mock.com/"
+    const val BASE_ENDPOINT_URL = "https://private-anon-189b9880b8-note10.apiary-mock.com/"
 }

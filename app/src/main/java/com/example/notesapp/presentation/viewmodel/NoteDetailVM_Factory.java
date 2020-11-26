@@ -2,30 +2,32 @@
 package com.example.notesapp.presentation.viewmodel;
 
 import com.example.notesapp.domain.NotesDataManager;
+
 import dagger.internal.Factory;
+
 import javax.inject.Provider;
 
 @SuppressWarnings({
-    "unchecked",
-    "rawtypes"
+        "unchecked",
+        "rawtypes"
 })
 public final class NoteDetailVM_Factory implements Factory<NoteDetailVM> {
-  private final Provider<NotesDataManager> dataManagerProvider;
+    private final Provider<NotesDataManager> dataManagerProvider;
 
-  public NoteDetailVM_Factory(Provider<NotesDataManager> dataManagerProvider) {
-    this.dataManagerProvider = dataManagerProvider;
-  }
+    public NoteDetailVM_Factory(Provider<NotesDataManager> dataManagerProvider) {
+        this.dataManagerProvider = dataManagerProvider;
+    }
 
-  @Override
-  public NoteDetailVM get() {
-    return newInstance(dataManagerProvider.get());
-  }
+    @Override
+    public NoteDetailVM get() {
+        return newInstance(dataManagerProvider.get());
+    }
 
-  public static NoteDetailVM_Factory create(Provider<NotesDataManager> dataManagerProvider) {
-    return new NoteDetailVM_Factory(dataManagerProvider);
-  }
+    public static NoteDetailVM_Factory create(Provider<NotesDataManager> dataManagerProvider) {
+        return new NoteDetailVM_Factory(dataManagerProvider);
+    }
 
-  public static NoteDetailVM newInstance(NotesDataManager dataManager) {
-    return new NoteDetailVM(dataManager);
-  }
+    public static NoteDetailVM newInstance(NotesDataManager dataManager) {
+        return new NoteDetailVM(dataManager);
+    }
 }

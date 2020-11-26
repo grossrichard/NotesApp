@@ -7,7 +7,7 @@ import com.example.notesapp.infrastructure.api.dto.NoteDto
  */
 object MockDataProvider {
 
-    fun createMockLoadRecipesResp(): List<NoteDto> =
+    fun createMockLoadNotesResp(): List<NoteDto> =
         arrayListOf(
             NoteDto().apply {
                 id = "1"
@@ -26,7 +26,7 @@ object MockDataProvider {
                 title = "Practising with band"
             })
 
-    fun createLoadRecipeDetailResp(): NoteDto =
+    fun createLoadNoteDetailResp(): NoteDto =
         NoteDto().apply {
             id = "9999"
             title = "Some new note"

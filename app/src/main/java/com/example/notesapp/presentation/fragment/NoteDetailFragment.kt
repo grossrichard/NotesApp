@@ -17,6 +17,7 @@ import com.example.notesapp.skeleton.mvvm.event.MessageEvent
 import com.example.notesapp.presentation.util.AlertDialogCreator
 import com.example.notesapp.presentation.viewmodel.NoteDetailVM
 import kotlinx.android.synthetic.main.fragment_note_list.*
+import org.koin.android.viewmodel.ext.android.viewModel
 import kotlin.reflect.KClass
 
 
@@ -27,6 +28,7 @@ class NoteDetailFragment : BaseMvvmFragment<FragmentNoteDetailBinding, NoteDetai
 
     override val viewModelClass: KClass<NoteDetailVM> = NoteDetailVM::class
     override val layoutId: Int = R.layout.fragment_note_detail
+    override val viewModel by viewModel<NoteDetailVM>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

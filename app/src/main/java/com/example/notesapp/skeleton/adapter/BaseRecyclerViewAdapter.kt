@@ -84,7 +84,10 @@ abstract class BaseRecyclerViewAdapter<T>(
         items.addOnListChangedCallback(onListChangedCallback)
     }
 
-    private fun getViewHolderBinding(parent: ViewGroup?, @LayoutRes itemLayoutId: Int): ViewDataBinding? {
+    private fun getViewHolderBinding(
+        parent: ViewGroup?,
+        @LayoutRes itemLayoutId: Int
+    ): ViewDataBinding? {
         return DataBindingUtil.inflate(
             LayoutInflater.from(parent!!.context),
             itemLayoutId,

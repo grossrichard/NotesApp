@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
@@ -14,30 +15,26 @@ import com.example.notesapp.BR
 import com.example.notesapp.skeleton.mvvm.event.*
 import com.example.notesapp.presentation.util.AlertDialogCreator
 import dagger.android.support.DaggerFragment
+import org.koin.android.ext.android.getKoin
+import org.koin.android.viewmodel.ext.android.viewModel
 import javax.inject.Inject
 import kotlin.reflect.KClass
 
 /**
  * Created by Richard Gross on 2020-01-13
  */
-abstract class BaseMvvmFragment<B : ViewDataBinding, VM : BaseViewModel> : DaggerFragment() {
+abstract class BaseMvvmFragment<B : ViewDataBinding, VM : BaseViewModel> : Fragment() {
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
     protected lateinit var binding: B
-    protected lateinit var viewModel: VM
-    protected abstract val viewModelClass: KClass<VM>?
+    abstract val viewModel: VM
+    protected abstract val viewModelClass: KClass<VM>
 
     protected abstract val layoutId: Int
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        viewModelClass?.let {
-            viewModel = ViewModelProviders.of(this, viewModelFactory).get(it.java)
-            lifecycle.addObserver(viewModel)
-        }
-
+        lifecycle.addObserver(viewModel)
         subscribeEvents()
     }
 
@@ -68,14 +65,14 @@ abstract class BaseMvvmFragment<B : ViewDataBinding, VM : BaseViewModel> : Dagge
     protected open fun subscribeEvents() {
         subscribe(NavigateEvent::class, Observer { onNavigateEvent(it) })
         subscribe(GenericErrorEvent::class, Observer {
-            AlertDialogCreator.createDefaultErrorDialog(context!!)
+            AlertDialogCreator.createDefaultErrorDialog(requireContext())
         })
         subscribe(NoInternetAvailableEvent::class, Observer {
-            AlertDialogCreator.createNoInternetDialog(context!!)
+            AlertDialogCreator.createNoInternetDialog(requireContext())
         })
     }
 
     protected fun onNavigateEvent(evt: NavigateEvent) {
-        Navigation.findNavController(view!!).navigate(evt.direction)
+        Navigation.findNavController(requireView()).navigate(evt.direction)
     }
 }

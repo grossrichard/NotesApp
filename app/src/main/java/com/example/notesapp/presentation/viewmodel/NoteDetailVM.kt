@@ -14,8 +14,7 @@ import javax.inject.Inject
 /**
  * Created by Richard Gross on 2020-01-13
  */
-class NoteDetailVM @Inject constructor(private val dataManager: NotesDataManager) :
-    BaseViewModel() {
+class NoteDetailVM(private val dataManager: NotesDataManager) : BaseViewModel() {
 
     var id: String? = null
     val mode: MutableLiveData<NoteDetailMode> = MutableLiveData()
