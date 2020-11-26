@@ -8,16 +8,13 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import com.example.notesapp.BR
-import com.example.notesapp.skeleton.mvvm.event.*
 import com.example.notesapp.presentation.util.AlertDialogCreator
-import dagger.android.support.DaggerFragment
-import org.koin.android.ext.android.getKoin
-import org.koin.android.viewmodel.ext.android.viewModel
-import javax.inject.Inject
+import com.example.notesapp.skeleton.mvvm.event.GenericErrorEvent
+import com.example.notesapp.skeleton.mvvm.event.LiveEvent
+import com.example.notesapp.skeleton.mvvm.event.NavigateEvent
+import com.example.notesapp.skeleton.mvvm.event.NoInternetAvailableEvent
 import kotlin.reflect.KClass
 
 /**
@@ -28,7 +25,6 @@ abstract class BaseMvvmFragment<B : ViewDataBinding, VM : BaseViewModel> : Fragm
     protected lateinit var binding: B
     abstract val viewModel: VM
     protected abstract val viewModelClass: KClass<VM>
-
     protected abstract val layoutId: Int
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -76,7 +76,7 @@ private val ApiModule = module {
 
 private val ViewModelModule = module {
     viewModel { NotesListVM(get()) }
-    viewModel { NoteDetailVM(get()) }
+    viewModel { NoteDetailVM(get(), get(), get(), get()) }
 }
 
 private val RepositoryModule = module {

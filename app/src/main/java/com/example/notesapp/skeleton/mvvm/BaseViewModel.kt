@@ -17,7 +17,6 @@ import kotlin.reflect.KClass
 open class BaseViewModel : ViewModel(), LifecycleObserver {
 
     private val liveEventMap: LiveEventMap = LiveEventMap()
-
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
     var loading: MutableLiveData<Boolean> = MutableLiveData()
 

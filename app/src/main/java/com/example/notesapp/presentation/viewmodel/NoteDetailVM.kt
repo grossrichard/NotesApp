@@ -6,6 +6,10 @@ import com.example.notesapp.presentation.entity.NoteFace
 import com.example.notesapp.presentation.entity.NoteDetailMode
 import com.example.notesapp.presentation.entity.NoteDetailMode.*
 import com.example.notesapp.domain.repository.NotesDataManager
+import com.example.notesapp.domain.usecase.CreateNoteUseCase
+import com.example.notesapp.domain.usecase.DeleteNoteUseCase
+import com.example.notesapp.domain.usecase.LoadNoteDetailUseCase
+import com.example.notesapp.domain.usecase.UpdateNoteUseCase
 import com.example.notesapp.skeleton.mvvm.BaseViewModel
 import com.example.notesapp.skeleton.mvvm.event.MessageEvent
 import io.reactivex.functions.Consumer
@@ -13,7 +17,12 @@ import io.reactivex.functions.Consumer
 /**
  * Created by Richard Gross on 2020-01-13
  */
-class NoteDetailVM(private val dataManager: NotesDataManager) : BaseViewModel() {
+class NoteDetailVM(
+    private val loadNoteDetailUseCase: LoadNoteDetailUseCase,
+    private val createNoteUseCase: CreateNoteUseCase,
+    private val updateNoteUseCase: UpdateNoteUseCase,
+    private val deleteNoteUseCase: DeleteNoteUseCase
+) : BaseViewModel() {
 
     var id: Long? = null
     val mode: MutableLiveData<NoteDetailMode> = MutableLiveData()
@@ -26,7 +35,7 @@ class NoteDetailVM(private val dataManager: NotesDataManager) : BaseViewModel() 
             CREATE -> loading.value = false
             EDIT, READ, DELETE -> id?.let {
                 subscribeSingle(
-                    dataManager.loadNoteDetail(it),
+                    loadNoteDetailUseCase.loadNoteDetail(it),
                     Consumer(this::onNoteDetailLoaded)
                 )
             }
@@ -34,15 +43,15 @@ class NoteDetailVM(private val dataManager: NotesDataManager) : BaseViewModel() 
     }
 
     fun deleteNote() = id?.let {
-        subscribeSingle(dataManager.deleteNote(it), Consumer { onResult() })
+        subscribeSingle(deleteNoteUseCase.deleteNote(it), Consumer { onResult() })
     }
 
     fun createNote() = subscribeSingle(
-        dataManager.createNote(NoteFace(id, title.value)), Consumer { onResult() })
+        createNoteUseCase.createNote(NoteFace(id, title.value)), Consumer { onResult() })
 
     fun editNote() = id?.let {
         subscribeSingle(
-            dataManager.updateNote(it, NoteFace(it, title.value)),
+            updateNoteUseCase.updateNote(it, NoteFace(it, title.value)),
             Consumer { onResult() })
     }
 

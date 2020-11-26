@@ -9,6 +9,10 @@
 
         <import type="com.example.notesapp.presentation.util.NoteUtils" />
 
+        <import type="com.example.notesapp.presentation.entity.NoteDetailMode" />
+
+        <import type="android.text.InputType" />
+
         <variable
             name="vm"
             type="com.example.notesapp.presentation.viewmodel.NoteDetailVM" />
@@ -51,6 +55,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
+                android:focusable="@{vm.mode == NoteDetailMode.CREATE || vm.mode == NoteDetailMode.EDIT}"
+                android:focusableInTouchMode="@{vm.mode == NoteDetailMode.CREATE || vm.mode == NoteDetailMode.EDIT}"
                 android:importantForAutofill="no"
                 android:padding="@dimen/medium_gap"
                 android:text="@={vm.title}"

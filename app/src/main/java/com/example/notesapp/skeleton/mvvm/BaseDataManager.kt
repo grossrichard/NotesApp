@@ -9,9 +9,7 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.functions.Consumer
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
-import javax.inject.Singleton
 
-@Singleton
 abstract class BaseDataManager {
 
     protected fun <T> subscribe(ps: PublishSubject<T>, c: Consumer<T>?): Disposable =
