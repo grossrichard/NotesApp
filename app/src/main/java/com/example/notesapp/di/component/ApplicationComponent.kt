@@ -19,10 +19,7 @@ package com.example.notesapp.di.component
 import android.content.Context
 import com.example.notesapp.Application
 import com.example.notesapp.di.ViewModelBuilder
-import com.example.notesapp.di.module.ApiModule
-import com.example.notesapp.di.module.ApplicationModule
-import com.example.notesapp.di.module.DatabaseModule
-import com.example.notesapp.di.module.FragmentModule
+import com.example.notesapp.di.module.*
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
@@ -38,7 +35,11 @@ import javax.inject.Singleton
         FragmentModule::class,
         ViewModelBuilder::class,
         ApiModule::class,
-        DatabaseModule::class
+        DatabaseModule::class,
+        RepositoryModule::class,
+        UseCaseModule::class,
+        SourceModule::class,
+        DataManagerModule::class
     ]
 )
 interface ApplicationComponent : AndroidInjector<Application> {

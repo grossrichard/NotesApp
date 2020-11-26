@@ -1,4 +1,4 @@
-package com.example.notesapp.model
+package com.example.notesapp.domain
 
 import com.example.notesapp.infrastructure.api.Converter
 import com.example.notesapp.infrastructure.api.NotesApiService
@@ -14,8 +14,7 @@ import javax.inject.Singleton
  * Created by Richard Gross on 2020-01-18
  */
 
-@Singleton
-class NotesDataManager @Inject constructor(
+class NotesDataManager(
     private val apiService: NotesApiService,
     private val db: AppDatabase
 ) :
@@ -35,9 +34,10 @@ class NotesDataManager @Inject constructor(
 //            .doOnSuccess { db.noteDao().addRecipeDetail(it) }
 //            .onErrorResumeNext { Single.just(db.recipeDetailDao().getRecipeDetail(id)) }
 
-    fun editNote(id: String, note: Note): Single<Note> =
+    fun updateNote(id: String, note: Note): Single<Note> =
         apiService.service.updateNote(id, Converter.convert(note)).map { Converter.convert(it) }
 
-    fun deleteNote(id: String) = apiService.service.deleteNote(id)
-        .map { Single.just(EmptyDto()) }
+    fun deleteNote(id: String): Single<EmptyDto> =
+        apiService.service.deleteNote(id).map { it.body() }
+
 }

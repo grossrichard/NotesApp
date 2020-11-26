@@ -5,7 +5,7 @@ import com.example.notesapp.R
 import com.example.notesapp.entity.Note
 import com.example.notesapp.entity.NoteDetailMode
 import com.example.notesapp.entity.NoteDetailMode.*
-import com.example.notesapp.model.NotesDataManager
+import com.example.notesapp.domain.NotesDataManager
 import com.example.notesapp.skeleton.mvvm.BaseViewModel
 import com.example.notesapp.skeleton.mvvm.event.MessageEvent
 import io.reactivex.functions.Consumer
@@ -46,7 +46,7 @@ class NoteDetailVM @Inject constructor(private val dataManager: NotesDataManager
     fun editNote() {
         id?.let {
             subscribeSingle(
-                dataManager.editNote(it, Note(it, title.value)),
+                dataManager.updateNote(it, Note(it, title.value)),
                 Consumer { onResult() })
         }
     }

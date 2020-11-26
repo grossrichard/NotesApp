@@ -3,7 +3,8 @@ package com.example.notesapp.presentation.viewmodel
 import androidx.databinding.ObservableArrayList
 import com.example.notesapp.entity.Note
 import com.example.notesapp.entity.NoteDetailMode
-import com.example.notesapp.model.NotesDataManager
+import com.example.notesapp.domain.NotesDataManager
+import com.example.notesapp.domain.usecase.LoadNotesUseCase
 import com.example.notesapp.presentation.fragment.NotesListFragmentDirections
 import com.example.notesapp.skeleton.mvvm.BaseViewModel
 import com.example.notesapp.skeleton.mvvm.event.NavigateEvent
@@ -13,14 +14,14 @@ import javax.inject.Inject
 /**
  * Created by Richard Gross on 2020-01-13
  */
-class NotesListVM @Inject constructor(private var dataManager: NotesDataManager) :
+class NotesListVM @Inject constructor(private var loadNotesUseCase: NotesDataManager) :
     BaseViewModel() {
 
     var recipesList = ObservableArrayList<Note>()
 
     fun loadRecipes() {
         loading.value = true
-        subscribeSingle(dataManager.loadNotes(), Consumer(this::onRecipesLoaded))
+        subscribeSingle(loadNotesUseCase.loadNotes(), Consumer(this::onRecipesLoaded))
     }
 
     private fun onRecipesLoaded(list: List<Note>) {
