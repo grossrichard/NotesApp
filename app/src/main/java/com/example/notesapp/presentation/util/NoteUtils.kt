@@ -2,8 +2,8 @@ package com.example.notesapp.presentation.util
 
 import androidx.annotation.StringRes
 import com.example.notesapp.R
-import com.example.notesapp.entity.NoteDetailMode
-import com.example.notesapp.entity.NoteDetailMode.*
+import com.example.notesapp.presentation.entity.NoteDetailMode
+import com.example.notesapp.presentation.entity.NoteDetailMode.*
 
 /**
  * Created by Richard Gross on 2020-01-26

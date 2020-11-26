@@ -1,22 +1,26 @@
 package com.example.notesapp.data
 
-import com.example.notesapp.domain.NotesDataManager
-import com.example.notesapp.entity.Note
-import com.example.notesapp.infrastructure.api.Converter
-import com.example.notesapp.infrastructure.api.dto.EmptyDto
-import com.example.notesapp.infrastructure.api.dto.NoteDto
+import com.example.notesapp.data.entity.EmptyDto
+import com.example.notesapp.data.entity.NoteDbo
+import com.example.notesapp.data.entity.NoteDto
+import com.example.notesapp.infrastructure.api.Mapper
+import com.example.notesapp.infrastructure.db.AppDatabase
+import com.example.notesapp.presentation.entity.NoteFace
 import io.reactivex.Single
 
-class NotesLocalSourceImpl(private val dataManager: NotesDataManager) : NotesLocalSource {
-    override fun loadNotes(): Single<List<Note>> = dataManager.loadNotes()
+class NotesLocalSourceImpl(private val db: AppDatabase) : NotesLocalSource {
 
-    override fun loadNoteDetail(id: String): Single<Note> = dataManager.loadNoteDetail(id)
+    override fun loadNotes(): Single<List<NoteDbo>> = db.noteDao().getAll()
 
-    override fun createNote(note: NoteDto): Single<Note> =
-        dataManager.createNote(Converter.convert(note))
+    override fun loadNoteDetail(id: Long): Single<NoteDbo> = db.noteDao().findById(id)
 
-    override fun updateNote(id: String, note: NoteDto): Single<Note> =
-        dataManager.updateNote(id, Converter.convert(note))
+    override fun createNote(note: NoteDbo): Single<NoteDbo> = db.noteDao()
+        .insert(note)
+        .let { Single.just(note) }
 
-    override fun deleteNote(id: String): Single<EmptyDto> = dataManager.deleteNote(id)
+    override fun updateNote(id: Long, note: NoteDto): Single<NoteDbo> = db.noteDao().findById(id)
+
+    override fun deleteNote(id: Long): Single<EmptyDto> = db.noteDao()
+        .delete(id)
+        .let { Single.just(EmptyDto()) }
 }

@@ -1,9 +1,9 @@
 package com.example.notesapp.presentation.viewmodel
 
 import androidx.databinding.ObservableArrayList
-import com.example.notesapp.entity.Note
-import com.example.notesapp.entity.NoteDetailMode
-import com.example.notesapp.domain.NotesDataManager
+import com.example.notesapp.presentation.entity.NoteFace
+import com.example.notesapp.presentation.entity.NoteDetailMode
+import com.example.notesapp.domain.repository.NotesDataManager
 import com.example.notesapp.presentation.fragment.NotesListFragmentDirections
 import com.example.notesapp.skeleton.mvvm.BaseViewModel
 import com.example.notesapp.skeleton.mvvm.event.NavigateEvent
@@ -14,29 +14,26 @@ import io.reactivex.functions.Consumer
  */
 class NotesListVM(private var loadNotesUseCase: NotesDataManager) : BaseViewModel() {
 
-    var notesList = ObservableArrayList<Note>()
-
+    var notesList = ObservableArrayList<NoteFace>()
 
     fun loadNotes() {
         loading.value = true
         subscribeSingle(loadNotesUseCase.loadNotes(), Consumer(this::onNotesLoaded))
     }
 
-    private fun onNotesLoaded(list: List<Note>) {
+    private fun onNotesLoaded(list: List<NoteFace>) {
         loading.value = false
         notesList.clear()
         notesList.addAll(list)
     }
 
-    fun onItemClicked(note: Note) {
-        publish(
-            NavigateEvent(
-                NotesListFragmentDirections.navigateNotesListToNoteDetail(
-                    note.id,
-                    NoteDetailMode.READ
-                )
+    fun onItemClicked(note: NoteFace) = publish(
+        NavigateEvent(
+            NotesListFragmentDirections.navigateNotesListToNoteDetail(
+                note.id as java.lang.Long,
+                NoteDetailMode.READ
             )
         )
-    }
+    )
 }
 

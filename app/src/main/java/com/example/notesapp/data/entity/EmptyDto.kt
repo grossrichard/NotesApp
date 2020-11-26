@@ -1,4 +1,4 @@
-package com.example.notesapp.infrastructure.api.dto
+package com.example.notesapp.data.entity
 
 /**
  * Created by Richard Gross on 2020-01-26

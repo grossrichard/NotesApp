@@ -1,7 +1,7 @@
 package com.example.notesapp.infrastructure.api
 
-import com.example.notesapp.infrastructure.api.dto.EmptyDto
-import com.example.notesapp.infrastructure.api.dto.NoteDto
+import com.example.notesapp.data.entity.EmptyDto
+import com.example.notesapp.data.entity.NoteDto
 import io.reactivex.Single
 import retrofit2.Response
 import java.util.concurrent.TimeUnit
@@ -25,16 +25,16 @@ class NotesApiDefinitionMock : NotesApiDefinition {
             .delay(MOCK_RESPONSE_DURATION_MILLIS, TimeUnit.MILLISECONDS)
     }
 
-    override fun updateNote(id: String, note: NoteDto): Single<NoteDto> {
+    override fun updateNote(id: Long, note: NoteDto): Single<NoteDto> {
         return Single.just(note)
             .delay(MOCK_RESPONSE_DURATION_MILLIS, TimeUnit.MILLISECONDS)
     }
 
-    override fun deleteNote(id: String): Single<Response<EmptyDto>> =
+    override fun deleteNote(id: Long): Single<Response<EmptyDto>> =
         Single.just(Response.success(EmptyDto()))
             .delay(MOCK_RESPONSE_DURATION_MILLIS, TimeUnit.MILLISECONDS)
 
-    override fun loadNoteDetail(id: String): Single<NoteDto> =
+    override fun loadNoteDetail(id: Long): Single<NoteDto> =
         Single.just(MockDataProvider.createLoadNoteDetailResp())
             .delay(MOCK_RESPONSE_DURATION_MILLIS, TimeUnit.MILLISECONDS)
 

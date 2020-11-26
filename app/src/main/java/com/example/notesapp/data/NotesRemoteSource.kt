@@ -1,17 +1,17 @@
 package com.example.notesapp.data
 
-import com.example.notesapp.entity.Note
-import com.example.notesapp.infrastructure.api.dto.EmptyDto
-import com.example.notesapp.infrastructure.api.dto.NoteDto
+import com.example.notesapp.data.entity.EmptyDto
+import com.example.notesapp.data.entity.NoteDto
+import com.example.notesapp.presentation.entity.NoteFace
 import io.reactivex.Single
 
 /**
  * @author richardgross on 26/11/2020
  */
 interface NotesRemoteSource {
-    fun loadNotes(): Single<List<Note>>
-    fun loadNoteDetail(id: String): Single<Note>
-    fun createNote(note: NoteDto): Single<Note>
-    fun updateNote(id: String, note: NoteDto): Single<Note>
-    fun deleteNote(id: String): Single<EmptyDto>
+    fun loadNotes(): Single<List<NoteDto>>
+    fun loadNoteDetail(id: Long): Single<NoteDto>
+    fun createNote(note: NoteDto): Single<NoteDto>
+    fun updateNote(id: Long, note: NoteDto): Single<NoteDto>
+    fun deleteNote(id: Long): Single<EmptyDto>
 }

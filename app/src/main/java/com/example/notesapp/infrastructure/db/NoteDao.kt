@@ -1,10 +1,8 @@
 package com.example.notesapp.infrastructure.db
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
-import com.example.notesapp.entity.Note
+import androidx.room.*
+import com.example.notesapp.data.entity.NoteDbo
+import io.reactivex.Single
 
 /**
  * Created by Richard Gross on 2020-01-25
@@ -13,9 +11,18 @@ import com.example.notesapp.entity.Note
 @Dao
 interface NoteDao {
 
-    @Query("SELECT * FROM notes")
-    fun getAll(): List<Note>
+    @Query("SELECT * FROM notedbo")
+    fun getAll(): Single<List<NoteDbo>>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addAll(notes: List<Note>)
+    @Insert
+    fun insert(note: NoteDbo)
+
+    @Query("DELETE FROM notedbo WHERE id = :id")
+    fun delete(id: Long)
+
+    @Update
+    fun update(note: NoteDbo)
+
+    @Query("SELECT * FROM notedbo WHERE id=:id")
+    fun findById(id: Long): Single<NoteDbo>
 }

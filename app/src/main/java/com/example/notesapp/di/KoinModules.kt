@@ -6,14 +6,13 @@ import com.example.notesapp.data.NotesLocalSource
 import com.example.notesapp.data.NotesLocalSourceImpl
 import com.example.notesapp.data.NotesRemoteSource
 import com.example.notesapp.data.NotesRemoteSourceImpl
-import com.example.notesapp.domain.NotesDataManager
+import com.example.notesapp.domain.repository.NotesDataManager
 import com.example.notesapp.domain.repository.NotesRepository
 import com.example.notesapp.domain.repository.implementation.NotesRepositoryImpl
 import com.example.notesapp.domain.usecase.*
 import com.example.notesapp.domain.usecase.implementation.*
 import com.example.notesapp.infrastructure.api.ApiConfig
 import com.example.notesapp.infrastructure.api.NotesApiDefinition
-import com.example.notesapp.infrastructure.api.NotesApiService
 import com.example.notesapp.infrastructure.db.AppDatabase
 import com.example.notesapp.presentation.viewmodel.NoteDetailVM
 import com.example.notesapp.presentation.viewmodel.NotesListVM
@@ -43,20 +42,18 @@ private val DatabaseModule = module {
         Room.databaseBuilder(
             androidContext().applicationContext,
             AppDatabase::class.java,
-            "notes.db"
+            "notes"
         ).allowMainThreadQueries()
             .build()
     }
 }
 
+// TODO: 26/11/2020 remove this use NotesLocalSource and RemoteLocalSource instead
 private val DataManagerModule = module {
     single { NotesDataManager(get(), get()) }
 }
 
 private val ApiModule = module {
-
-    single { NotesApiService(get()) }
-
     single {
         Retrofit.Builder()
             .baseUrl(ApiConfig.BASE_ENDPOINT_URL)

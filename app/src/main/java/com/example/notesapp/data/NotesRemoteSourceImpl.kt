@@ -1,22 +1,19 @@
 package com.example.notesapp.data
 
-import com.example.notesapp.domain.NotesDataManager
-import com.example.notesapp.entity.Note
-import com.example.notesapp.infrastructure.api.Converter
-import com.example.notesapp.infrastructure.api.dto.EmptyDto
-import com.example.notesapp.infrastructure.api.dto.NoteDto
+import com.example.notesapp.data.entity.EmptyDto
+import com.example.notesapp.data.entity.NoteDto
+import com.example.notesapp.infrastructure.api.NotesApiDefinition
 import io.reactivex.Single
 
-class NotesRemoteSourceImpl(private val dataManager: NotesDataManager) : NotesRemoteSource {
-    override fun loadNotes(): Single<List<Note>> = dataManager.loadNotes()
+class NotesRemoteSourceImpl(private val api: NotesApiDefinition) : NotesRemoteSource {
 
-    override fun loadNoteDetail(id: String): Single<Note> = dataManager.loadNoteDetail(id)
+    override fun loadNotes(): Single<List<NoteDto>> = api.loadNotes()
 
-    override fun createNote(note: NoteDto): Single<Note> =
-        dataManager.createNote(Converter.convert(note))
+    override fun loadNoteDetail(id: Long): Single<NoteDto> = api.loadNoteDetail(id)
 
-    override fun updateNote(id: String, note: NoteDto): Single<Note> =
-        dataManager.updateNote(id, Converter.convert(note))
+    override fun createNote(note: NoteDto): Single<NoteDto> = api.createNote(note)
 
-    override fun deleteNote(id: String): Single<EmptyDto> = dataManager.deleteNote(id)
+    override fun updateNote(id: Long, note: NoteDto): Single<NoteDto> = api.updateNote(id, note)
+
+    override fun deleteNote(id: Long): Single<EmptyDto> = api.deleteNote(id).map { EmptyDto() }
 }

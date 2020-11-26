@@ -1,7 +1,7 @@
 package com.example.notesapp.infrastructure.api
 
-import com.example.notesapp.infrastructure.api.dto.EmptyDto
-import com.example.notesapp.infrastructure.api.dto.NoteDto
+import com.example.notesapp.data.entity.EmptyDto
+import com.example.notesapp.data.entity.NoteDto
 import io.reactivex.Single
 import retrofit2.Response
 import retrofit2.http.*
@@ -15,14 +15,14 @@ interface NotesApiDefinition {
     fun loadNotes(): Single<List<NoteDto>>
 
     @GET("notes/{noteId}")
-    fun loadNoteDetail(@Path("noteId") id: String): Single<NoteDto>
+    fun loadNoteDetail(@Path("noteId") id: Long): Single<NoteDto>
 
     @POST("notes")
     fun createNote(@Body note: NoteDto): Single<NoteDto>
 
     @PUT("notes/{noteId}")
-    fun updateNote(@Path("noteId") id: String, @Body note: NoteDto): Single<NoteDto>
+    fun updateNote(@Path("noteId") id: Long, @Body note: NoteDto): Single<NoteDto>
 
     @DELETE("notes/{noteId}")
-    fun deleteNote(@Path("noteId") id: String): Single<Response<EmptyDto>>
+    fun deleteNote(@Path("noteId") id: Long): Single<Response<EmptyDto>>
 }

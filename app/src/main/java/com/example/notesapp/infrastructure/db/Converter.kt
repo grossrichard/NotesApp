@@ -15,11 +15,10 @@ object Converter {
 
     @JvmStatic
     @TypeConverter
-    fun convertIngredients(ingredients: List<String>?): String? =
-        ingredients?.let { GSON.toJson(it) }
+    fun convertNotes(notes: List<String>?): String? = notes?.let { GSON.toJson(it) }
 
     @JvmStatic
     @TypeConverter
-    fun convertIngredients(ingredients: String?): List<String>? =
-        ingredients?.let { GSON.fromJson(it, object : TypeToken<ArrayList<String>>() {}.type) }
+    fun convertNote(note: String?): List<String>? =
+        note?.let { GSON.fromJson(it, object : TypeToken<ArrayList<String>>() {}.type) }
 }

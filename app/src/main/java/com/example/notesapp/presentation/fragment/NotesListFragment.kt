@@ -6,7 +6,7 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.notesapp.R
 import com.example.notesapp.databinding.FragmentNoteListBinding
-import com.example.notesapp.entity.NoteDetailMode
+import com.example.notesapp.presentation.entity.NoteDetailMode
 import com.example.notesapp.skeleton.mvvm.BaseMvvmFragment
 import com.example.notesapp.presentation.util.UiUtils
 import com.example.notesapp.presentation.viewmodel.NotesListVM

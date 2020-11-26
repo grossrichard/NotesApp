@@ -1,12 +1,15 @@
 package com.example.notesapp.domain.usecase.implementation
 
+import com.example.notesapp.domain.entity.Mapper.toNoteBdo
+import com.example.notesapp.domain.entity.Mapper.toNoteFace
 import com.example.notesapp.domain.repository.NotesRepository
 import com.example.notesapp.domain.usecase.UpdateNoteUseCase
-import com.example.notesapp.entity.Note
-import com.example.notesapp.infrastructure.api.dto.NoteDto
+import com.example.notesapp.presentation.entity.NoteFace
 import io.reactivex.Single
 
-class UpdateNoteUseCaseImpl(private val repository: NotesRepository) : UpdateNoteUseCase {
-    override fun updateNote(id: String, note: NoteDto): Single<Note> =
-        repository.updateNote(id, note)
+class UpdateNoteUseCaseImpl(private val repo: NotesRepository) : UpdateNoteUseCase {
+
+    override fun updateNote(id: Long, note: NoteFace): Single<NoteFace> = repo
+        .updateNote(id, note.toNoteBdo())
+        .map { it.toNoteFace() }
 }

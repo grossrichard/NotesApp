@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.notesapp.entity.Note
+import com.example.notesapp.presentation.entity.NoteFace
 
 /**
  * Created by Richard Gross on 2020-01-25
@@ -14,8 +14,8 @@ import com.example.notesapp.entity.Note
 interface NoteDetailDao {
 
     @Query("SELECT * FROM notes WHERE id==:id")
-    fun getNoteDetail(id: String): Note?
+    fun getNoteDetail(id: String): NoteFace?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addNoteDetail(note: Note)
+    fun addNoteDetail(note: NoteFace)
 }

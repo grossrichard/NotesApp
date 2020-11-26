@@ -10,8 +10,8 @@ import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import com.example.notesapp.R
 import com.example.notesapp.databinding.FragmentNoteDetailBinding
-import com.example.notesapp.entity.NoteDetailMode
-import com.example.notesapp.entity.NoteDetailMode.*
+import com.example.notesapp.presentation.entity.NoteDetailMode
+import com.example.notesapp.presentation.entity.NoteDetailMode.*
 import com.example.notesapp.skeleton.mvvm.BaseMvvmFragment
 import com.example.notesapp.skeleton.mvvm.event.MessageEvent
 import com.example.notesapp.presentation.util.AlertDialogCreator
@@ -35,7 +35,7 @@ class NoteDetailFragment : BaseMvvmFragment<FragmentNoteDetailBinding, NoteDetai
 
         arguments?.let {
             viewModel.mode.value = NoteDetailFragmentArgs.fromBundle(it).mode
-            viewModel.id = NoteDetailFragmentArgs.fromBundle(it).id
+            viewModel.id = NoteDetailFragmentArgs.fromBundle(it).id?.toLong()
         }
 
         subscribe(MessageEvent::class, Observer {

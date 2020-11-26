@@ -1,34 +1,19 @@
 package com.example.notesapp.infrastructure.api
 
-import com.example.notesapp.infrastructure.api.dto.NoteDto
+import com.example.notesapp.data.entity.NoteDto
 
 /**
  * Created by Richard Gross on 2020-01-19
  */
 object MockDataProvider {
 
-    fun createMockLoadNotesResp(): List<NoteDto> =
-        arrayListOf(
-            NoteDto().apply {
-                id = "1"
-                title = "Jogging in park"
-            }, NoteDto().apply {
-                id = "2"
-                title = "Pick-up posters from post-office"
-            }, NoteDto().apply {
-                id = "3"
-                title = "Gym"
-            }, NoteDto().apply {
-                id = "4"
-                title = "Gym"
-            }, NoteDto().apply {
-                id = "5"
-                title = "Practising with band"
-            })
+    fun createMockLoadNotesResp(): List<NoteDto> = arrayListOf(
+        NoteDto(1, "Jogging in park"),
+        NoteDto(2, "Pick-up posters from post-office"),
+        NoteDto(3, "Gym"),
+        NoteDto(4, "Gym"),
+        NoteDto(5, "Practising with band")
+    )
 
-    fun createLoadNoteDetailResp(): NoteDto =
-        NoteDto().apply {
-            id = "9999"
-            title = "Some new note"
-        }
+    fun createLoadNoteDetailResp(): NoteDto = NoteDto(999, "Some new note")
 }
