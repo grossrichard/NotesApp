@@ -1,4 +1,4 @@
-package com.example.notesapp.presentation.view
+package com.example.notesapp.presentation.fragment
 
 import android.os.Bundle
 import android.view.Menu

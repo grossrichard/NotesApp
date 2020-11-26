@@ -1,4 +1,4 @@
-package com.example.notesapp.presentation.view.bindings
+package com.example.notesapp.presentation.util
 
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
@@ -19,7 +19,6 @@ import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import com.example.notesapp.Application
-import com.example.notesapp.presentation.util.UiUtils
 
 
 @BindingAdapter("backgroundResource")

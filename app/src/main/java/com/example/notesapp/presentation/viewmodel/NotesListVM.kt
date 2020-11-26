@@ -4,9 +4,9 @@ import androidx.databinding.ObservableArrayList
 import com.example.notesapp.entity.Note
 import com.example.notesapp.entity.NoteDetailMode
 import com.example.notesapp.model.NotesDataManager
+import com.example.notesapp.presentation.fragment.NotesListFragmentDirections
 import com.example.notesapp.skeleton.mvvm.BaseViewModel
 import com.example.notesapp.skeleton.mvvm.event.NavigateEvent
-import com.example.notesapp.presentation.view.NotesListFragmentDirections
 import io.reactivex.functions.Consumer
 import javax.inject.Inject
 

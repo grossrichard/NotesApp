@@ -3,8 +3,8 @@ package com.example.notesapp.di.module
 import androidx.lifecycle.ViewModel
 import com.example.notesapp.di.ViewModelBuilder
 import com.example.notesapp.di.ViewModelKey
-import com.example.notesapp.presentation.view.NoteDetailFragment
-import com.example.notesapp.presentation.view.NotesListFragment
+import com.example.notesapp.presentation.fragment.NoteDetailFragment
+import com.example.notesapp.presentation.fragment.NotesListFragment
 import com.example.notesapp.presentation.viewmodel.NoteDetailVM
 import com.example.notesapp.presentation.viewmodel.NotesListVM
 import dagger.Binds
